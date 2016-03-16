@@ -18,11 +18,6 @@ public class AndroidEmulator {
 		launchEmulator = "emulator -avd "+defaultEmulator;
 		System.out.println("\n launching emulator using : " + launchEmulator);
 		cp.runCommand(launchEmulator);
-			
-		if(lines.length<=1){
-			System.out.println("No Emulator available");
-			createEmulator();
-		}
 	}
 	
 	public void createEmulator()

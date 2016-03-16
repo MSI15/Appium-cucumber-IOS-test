@@ -3,6 +3,7 @@ package utils;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -22,6 +23,7 @@ public class CreateDriver {
     static DeviceConfiguration deviceConf = new DeviceConfiguration();
 	static AppiumManager appiumMan = new AppiumManager();
 	static CommandPrompt cmd = new CommandPrompt();
+	AndroidEmulator emu = new AndroidEmulator();
 	String testPlatform;
     
     public void setUp(String device) throws Exception {
@@ -29,6 +31,8 @@ public class CreateDriver {
         	startIOSDriver();
         }
         if (device.contains("android")) {
+        	appiumMan.startDefaultAppium();
+ 		    deviceConf.startADB();
         	testPlatform = device;
         	startAndroidDriver();
         }
@@ -44,16 +48,19 @@ public class CreateDriver {
 
     private DesiredCapabilities getAndroidDesiredCapabilities() throws Exception 
     {
-    	String appPackage = "com.bskyb.digitalcontentsdk.video.ooyala.sample"; 
-        String mainActivity = "MainActivity";
-        //String appPath = Settings.applicationPath;
+    //	String appPackage = "com.bskyb.digitalcontentsdk.video.ooyala.sample"; 
+    	String appPackage = Settings.applicationPackage;
+        String mainActivity = Settings.launchActivity;
+        String appPath = Settings.applicationPath;
         String path = System.getProperty("user.dir");
-        String appPath = path+"/app/app-debug.apk";
+        //String appPath = path+"/app/app-debug.apk";
       
         //create appium driver instance
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("appium-version", "1.0");
 		capabilities.setCapability("platformName", "Android");
+		
+		System.out.println("Targetted test platform is : " + testPlatform);
 		 
         if(testPlatform.equals("androidDevice"))
         {
@@ -84,12 +91,18 @@ public class CreateDriver {
    		 capabilities.setCapability("udid", deviceId);
    		 
         }	
-        else if(testPlatform.equals("androidEmulator"))
+        else if(testPlatform.equals("androidDefaultEmulator"))
         {
-        	AndroidEmulator emu = new AndroidEmulator();
         	emu.startDefaultEmulator();	
-        	capabilities.setCapability(CapabilityType.VERSION, "");
+        	capabilities.setCapability(CapabilityType.VERSION, "6.0");
       		capabilities.setCapability("deviceName", "Nexus9");
+        }
+        else
+        {
+        	String emulatorName = "";
+        	emu.startEmulator(emulatorName);
+        	capabilities.setCapability(CapabilityType.VERSION, "");
+      		capabilities.setCapability("deviceName", emulatorName);
         }
        
 		 capabilities.setCapability("app", appPath);
@@ -141,5 +154,20 @@ public class CreateDriver {
     public static IOSDriver<WebElement> getIOSWebDriver() {
         return iOS_DRIVER;
     }
+
+	public void tearDown() throws Exception {
+			if(ANDROID_DRIVER!=null)
+			{
+				ANDROID_DRIVER.quit();
+				deviceConf.stopADB();
+			}
+			if(iOS_DRIVER!=null)
+			{
+				iOS_DRIVER.quit();
+			}
+			
+			
+		
+	}
 
 }
