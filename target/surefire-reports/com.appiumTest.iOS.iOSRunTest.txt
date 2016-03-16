@@ -1,0 +1,61 @@
+-------------------------------------------------------------------------------
+Test set: com.appiumTest.iOS.iOSRunTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 3, Time elapsed: 0.037 sec <<< FAILURE!
+Scenario: Play Video  Time elapsed: 0.005 sec  <<< ERROR!
+java.lang.ExceptionInInitializerError
+	at utils.CreateDriver.getIosDesiredCapabilities(CreateDriver.java:104)
+	at utils.CreateDriver.startIOSDriver(CreateDriver.java:93)
+	at utils.CreateDriver.setUp(CreateDriver.java:28)
+	at com.appiumTest.iOS.iOSStepDef.setUp(iOSStepDef.java:18)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at cucumber.runtime.Utils$1.call(Utils.java:37)
+	at cucumber.runtime.Timeout.timeout(Timeout.java:13)
+	at cucumber.runtime.Utils.invoke(Utils.java:31)
+	at cucumber.runtime.java.JavaHookDefinition.execute(JavaHookDefinition.java:60)
+	at cucumber.runtime.Runtime.runHookIfTagsMatch(Runtime.java:223)
+	at cucumber.runtime.Runtime.runHooks(Runtime.java:211)
+	at cucumber.runtime.Runtime.runBeforeHooks(Runtime.java:201)
+	at cucumber.runtime.model.CucumberScenario.run(CucumberScenario.java:40)
+	at cucumber.runtime.junit.ExecutionUnitRunner.run(ExecutionUnitRunner.java:91)
+	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:63)
+	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:18)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.runtime.junit.FeatureRunner.run(FeatureRunner.java:70)
+	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:93)
+	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:37)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.api.junit.Cucumber.run(Cucumber.java:98)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: java.lang.RuntimeException: java.io.FileNotFoundException: class path resource [environment.properties] cannot be opened because it does not exist
+	at utils.Settings.<clinit>(Settings.java:20)
+	... 47 more
+Caused by: java.io.FileNotFoundException: class path resource [environment.properties] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:172)
+	at utils.Settings.<clinit>(Settings.java:17)
+	... 47 more
+
