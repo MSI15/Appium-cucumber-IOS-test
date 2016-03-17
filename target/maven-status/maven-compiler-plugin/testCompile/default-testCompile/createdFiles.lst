@@ -1,0 +1,12 @@
+utils/AvailablePorts.class
+com/appiumTest/iOS/iOSRunTest.class
+utils/Settings.class
+com/appiumTest/android/AndroidStepDef.class
+utils/AbstractMethods.class
+utils/CommandPrompt.class
+utils/OoyalaPlayer.class
+com/appiumTest/android/AndroidRunTest.class
+com/appiumTest/iOS/iOSStepDef.class
+utils/DeviceConfiguration.class
+utils/AppiumManager.class
+utils/CreateDriver.class
