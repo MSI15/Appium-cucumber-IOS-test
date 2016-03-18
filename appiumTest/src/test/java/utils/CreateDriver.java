@@ -62,8 +62,10 @@ public class CreateDriver {
 		if((Settings.device.equals("android")) && (Settings.androidEmulator.equals("default")))
 		{
 			emu.startDefaultEmulator();	
+			String deviceName = emu.defaultEmulator;
+			System.out.println("Emulator Name : " + deviceName);
 			capabilities.setCapability(CapabilityType.VERSION, "6.0");
-			capabilities.setCapability("deviceName", "Nexus9");
+			capabilities.setCapability("deviceName", deviceName);
 		}
 		else if((Settings.device.equals("android")) && (Settings.androidEmulator.equals("no")))
 		{

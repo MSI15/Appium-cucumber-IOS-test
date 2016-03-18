@@ -5,7 +5,7 @@ import java.io.IOException;
 public class AndroidEmulator {
 	
 	CommandPrompt cp = new CommandPrompt();
-	String launchEmulator;
+	String launchEmulator, defaultEmulator;
 	String[] lines;
 	String availableEmulators;
 	String[] emulatorList;
@@ -20,17 +20,19 @@ public class AndroidEmulator {
 		{
 			System.out.println("No Emulators available. Creating new emulator");
 			createEmulator();
+			defaultEmulator = "testEmulator";
 			launchEmulator = "emulator -avd testEmulator";
 			
 		}
 		else
 		{
-			String defaultEmulator = "Nexus9";
+			defaultEmulator = lines[0].toString();
 			launchEmulator = "emulator -avd "+defaultEmulator;
 			System.out.println("\n launching emulator using : " + launchEmulator);
 		}
 		
 		cp.runCommand(launchEmulator);
+		//return defaultEmulator;
 	}
 	
 	public void createEmulator() throws InterruptedException, IOException

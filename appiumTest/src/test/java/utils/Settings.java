@@ -33,7 +33,7 @@ public class Settings {
         applicationPackage = properties.getProperty("applicationPackage");
         launchActivity = properties.getProperty("launchActivity");
         emulatorVersion = properties.getProperty("emulatorVersion");
-        androidEmulator = properties.getProperty("androidEmulator");
+        androidEmulator = properties.getProperty("AndroidEmulator");
         bundleID = properties.getProperty("bundleID");
         udid = properties.getProperty("UDID");
         iOSDevice = properties.getProperty("iOSDevice");
