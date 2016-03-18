@@ -1,0 +1,71 @@
+package utils;
+
+/**
+ * Appium Manager - this class contains method to start and stops appium server  
+ */
+public class AppiumManager {
+
+	CommandPrompt cp = new CommandPrompt();
+	AvailablePorts ap = new AvailablePorts();
+	String output;
+	
+	/**
+	 * start appium with default arguments
+	 */
+	public void startDefaultAppium()throws Exception
+	{
+		output = cp.runCommand("appium --session-override");
+		
+		String[] lines = output.split("\n");
+		
+		for(int i=1;i<lines.length;i++)
+		{
+			lines[i]=lines[i].replaceAll("\\s+", "");
+			if(lines[i].contains("Could not start"))
+			{
+				System.out.println("\n Could not start Appium");
+				System.exit(0);
+			}
+		}	
+	}
+	
+	/**
+	 * start appium with auto generated ports : appium port, chrome port, and bootstap port
+	 */
+	public String startAppium()throws Exception
+	{
+		String port = ap.getPort();
+		String chromePort = ap.getPort();
+		String bootstrapPort = ap.getPort();
+					
+		String command = "appium --session-override -p "+port+" --chromedriver-port "+chromePort+" -bp "+bootstrapPort;
+		System.out.println(command);
+		String output = cp.runCommand(command);
+		
+		if(output.contains("not"))
+		{
+			System.out.println("\nAppium is not started");
+			System.exit(0);
+		}
+		
+		return port;
+	}
+	
+	/**
+	 * start appium with modified arguments : appium port, chrome port, and bootstap port as user pass port number
+	 * @param appium port
+	 * @param chrome port
+	 * @param bootstrap port
+	 */
+	public void startAppium(String port, String chromePort, String bootstrapPort)throws Exception
+	{
+		String command = "appium --session-override -p "+port+" --chromedriver-port "+chromePort+" -bp "+bootstrapPort;
+		System.out.println(command);
+		String output = cp.runCommand(command);
+		System.out.println(output);
+	}
+	
+
+
+}
+
